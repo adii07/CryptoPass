@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -64,5 +65,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db=this.getWritableDatabase();
         Cursor res=db.rawQuery("select * from "+TABLE_NAME,null);
         return res;
+    }
+
+
+    public void deleteData(String ACCOUNT){
+        SQLiteDatabase db=this.getWritableDatabase();
+        db.delete(TABLE_NAME,"ACCOUNT = ? ",new String[] {ACCOUNT});
+        Log.d("Positionnnnn",""+db.delete(TABLE_NAME,"ACCOUNT = ? ",new String[] {ACCOUNT}));
+
     }
 }

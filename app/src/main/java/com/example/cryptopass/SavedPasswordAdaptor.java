@@ -30,12 +30,14 @@ import static java.util.logging.Logger.global;
 public class SavedPasswordAdaptor extends RecyclerView.Adapter<SavedPasswordAdaptor.ViewHolder> {
     private List<SavedPasswordModel> savedPasswordModelList;
     ClipboardManager clipboardManager;
+    DataBaseHelper db;
 
     public SavedPasswordAdaptor(List<SavedPasswordModel> savedPasswordModelList) {
         this.savedPasswordModelList = savedPasswordModelList;
     }
     public void removeItem(int position) {
         savedPasswordModelList.remove(position);
+        db.deleteData(Integer.toString(position));
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, savedPasswordModelList.size());
     }
@@ -73,6 +75,7 @@ public class SavedPasswordAdaptor extends RecyclerView.Adapter<SavedPasswordAdap
         private Button deletePassword;
 
 
+
         public ViewHolder(@NonNull final View itemView) {
             super(itemView);
             accountTitle=itemView.findViewById(R.id.titleTXT);
@@ -81,6 +84,7 @@ public class SavedPasswordAdaptor extends RecyclerView.Adapter<SavedPasswordAdap
             extension=itemView.findViewById(R.id.extension);
             copyText=itemView.findViewById(R.id.copyPasswordBTN);
             deletePassword=itemView.findViewById(R.id.deletePasswordBTN);
+            db=new DataBaseHelper(itemView.getContext());
             clipboardManager=(ClipboardManager)itemView.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
             vis=0;
 
@@ -121,7 +125,9 @@ public class SavedPasswordAdaptor extends RecyclerView.Adapter<SavedPasswordAdap
             deletePassword.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    removeItem(getPosition());
+                    String s=savedPasswordModelList.get(getPosition()).getTitle();
+                    removeItem(getAdapterPosition());
+                    delete(s);
                 }
             });
 
@@ -151,9 +157,11 @@ public class SavedPasswordAdaptor extends RecyclerView.Adapter<SavedPasswordAdap
 
 
         //delete password
-        private void delete(int position){
-            savedPasswordModelList.remove(position);
-            notifyDataSetChanged();
+        private void delete(String acc){
+            String s= acc;
+            db.deleteData(s);
+            Log.d("Position",acc);
+//            notifyDataSetChanged();
         }
 }
 
