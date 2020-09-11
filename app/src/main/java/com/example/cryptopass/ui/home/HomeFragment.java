@@ -5,6 +5,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,8 +24,11 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.cryptopass.AddPassword;
 import com.example.cryptopass.DataBaseHelper;
+import com.example.cryptopass.MainActivity;
 import com.example.cryptopass.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.math.BigInteger;
@@ -59,6 +63,20 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         final View root = inflater.inflate(R.layout.fragment_home, container, false);
+        FloatingActionButton fab = root.findViewById(R.id.fab);
+
+
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+                Intent intent=new Intent(getContext(), AddPassword.class);
+                startActivity(intent);
+            }
+        });
+
         normalPassword=root.findViewById(R.id.userpass);
         generatePassword=root.findViewById(R.id.changeToCrypto);
         cryptoPass=root.findViewById(R.id.cryptoPass);

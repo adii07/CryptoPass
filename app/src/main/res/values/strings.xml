@@ -10,4 +10,5 @@
     <string name="menu_home">CryptoPass</string>
     <string name="menu_gallery">Saved Passwords</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="quote">“There are only two types of people: those that have been hacked and those that don’t know it yet!”</string>
 </resources>

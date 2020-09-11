@@ -6,14 +6,19 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/passwordlock"
             android:title="CryptoPass"
             android:iconTint="#000000"
             android:titleCondensed="#000000"/>
         <item
             android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/database"
             android:title="Saved Passwords"
+            android:iconTint="#000000"/>
+        <item
+            android:id="@+id/nav_slideshow"
+            android:icon="@drawable/info"
+            android:title="About"
             android:iconTint="#000000"/>
 
     </group>
