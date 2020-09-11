@@ -20,6 +20,8 @@ public class AddPassword extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_password);
+        getSupportActionBar().setTitle("Add new Password");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         newTitle=findViewById(R.id.newTitle);
         newPassword=findViewById(R.id.newPassword);
         saveNewPassword=findViewById(R.id.saveNewPassword);
@@ -35,5 +37,11 @@ public class AddPassword extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"Password Saved.",Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }
